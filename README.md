@@ -1,3 +1,3 @@
 # littlewords
 
-Groupe :
+- ANTOLOTTI Alexandre
