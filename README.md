@@ -3,4 +3,5 @@
 Groupe :
 - ANTOLOTTI Alexandre
 - DELHAYE Clément
-- Dedrie Louis
+- DEDRIE Louis
+- PRUVOST Elisa
