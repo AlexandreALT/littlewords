@@ -46,8 +46,6 @@ dependencies:
   flutter_map: ^3.0.0
   latlong2: ^0.8.1
   location: ^4.4.0
-  sqflite: ^2.2.2
-  path: ^1.8.2
 
 dev_dependencies:
   flutter_test:
