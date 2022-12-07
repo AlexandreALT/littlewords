@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:littlewords/version.dart';
 import 'package:location/location.dart';
+
+import 'menu.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -19,15 +19,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -39,19 +37,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: FlutterMap(
         mapController: mapController,
         options: MapOptions(
-            center: _locationData,
+            //center: _locationData,
             zoom: 9.2,
             onMapReady: () async {
 
-              Location location = new Location();
+              Location location = Location();
 
-              PermissionStatus? _permissionGranted ;
+              PermissionStatus? permissionGranted;
               LocationData? _locationData;
 
               bool _serviceEnabled = await location.serviceEnabled();
@@ -63,10 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               }
 
-              _permissionGranted = await location.hasPermission();
-              if (_permissionGranted == PermissionStatus.denied) {
-                _permissionGranted = await location.requestPermission();
-                if (_permissionGranted != PermissionStatus.granted) {
+              permissionGranted = await location.hasPermission();
+              if (permissionGranted == PermissionStatus.denied) {
+                permissionGranted = await location.requestPermission();
+                if (permissionGranted != PermissionStatus.granted) {
                   return;
                 }
               }
@@ -87,11 +82,19 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
           return FloatingActionButton(
             tooltip: 'Menu',
-            onPressed: () {  },
+            backgroundColor: Colors.lightBlue,
+            onPressed: _openMenu,
+            shape: const CircleBorder(side: BorderSide(color: Colors.black, width: 2)),
             child: const Icon(Icons.arrow_drop_up_rounded, size: 55, color: Colors.black,),
           );
         },
       ),
     );
+  }
+
+  void _openMenu() {
+    showModalBottomSheet(context: context, builder: (context){
+      return const Menu();
+    });
   }
 }
