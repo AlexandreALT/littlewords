@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
               locationData = await location.getLocation();
 
-              mapController.move(LatLng(locationData.latitude!, locationData.longitude!), 13);
+              mapController.move(LatLng(locationData.latitude!, locationData.longitude!), 18);
 
             }
         ),
@@ -83,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
           return FloatingActionButton(
-            tooltip: 'Menu',
             backgroundColor: Colors.lightBlue,
             onPressed: _openMenu,
             shape: const CircleBorder(side: BorderSide(color: Colors.black, width: 2)),
