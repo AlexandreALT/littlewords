@@ -70,7 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
               }
 
               locationData = await location.getLocation();
-              position = LatLng(locationData.latitude!, locationData.longitude!);
+              setState(() {
+                position = LatLng(locationData!.latitude!, locationData.longitude!);
+              });
 
               mapController.move(
                   position!, 18);
