@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:littlewords/version.dart';
+import 'package:location/location.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -53,6 +54,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final mapController = MapController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +66,33 @@ class _MyHomePageState extends State<MyHomePage> {
         options: MapOptions(
           center: LatLng(51.509364, -0.128928),
           zoom: 9.2,
+          onMapReady: () async {
+
+            Location location = new Location();
+
+            PermissionStatus? _permissionGranted ;
+            LocationData? _locationData;
+
+            bool _serviceEnabled = await location.serviceEnabled();
+
+            if (!_serviceEnabled) {
+              _serviceEnabled = await location.requestService();
+              if (!_serviceEnabled) {
+                return;
+              }
+            }
+
+            _permissionGranted = await location.hasPermission();
+            if (_permissionGranted == PermissionStatus.denied) {
+              _permissionGranted = await location.requestPermission();
+              if (_permissionGranted != PermissionStatus.granted) {
+                return;
+              }
+            }
+
+            _locationData = await location.getLocation();
+
+          }
         ),
         children: [
           TileLayer(
