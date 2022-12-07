@@ -119,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _openMenu() {
     showModalBottomSheet(
         context: context,
+        backgroundColor: Colors.transparent,
         builder: (context) {
           return const Menu();
         });
