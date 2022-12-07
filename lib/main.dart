@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:littlewords/version.dart';
 
 void main() {
@@ -60,7 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: FlutterMap(
         mapController: mapController,
-        options: MapOptions(),
+        options: MapOptions(
+          center: LatLng(51.509364, -0.128928),
+          zoom: 9.2,
+        ),
         children: [
           TileLayer(
             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
