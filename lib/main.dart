@@ -64,35 +64,35 @@ class _MyHomePageState extends State<MyHomePage> {
       body: FlutterMap(
         mapController: mapController,
         options: MapOptions(
-          center: LatLng(51.509364, -0.128928),
-          zoom: 9.2,
-          onMapReady: () async {
+            center: _locationData,
+            zoom: 9.2,
+            onMapReady: () async {
 
-            Location location = new Location();
+              Location location = new Location();
 
-            PermissionStatus? _permissionGranted ;
-            LocationData? _locationData;
+              PermissionStatus? _permissionGranted ;
+              LocationData? _locationData;
 
-            bool _serviceEnabled = await location.serviceEnabled();
+              bool _serviceEnabled = await location.serviceEnabled();
 
-            if (!_serviceEnabled) {
-              _serviceEnabled = await location.requestService();
               if (!_serviceEnabled) {
-                return;
+                _serviceEnabled = await location.requestService();
+                if (!_serviceEnabled) {
+                  return;
+                }
               }
-            }
 
-            _permissionGranted = await location.hasPermission();
-            if (_permissionGranted == PermissionStatus.denied) {
-              _permissionGranted = await location.requestPermission();
-              if (_permissionGranted != PermissionStatus.granted) {
-                return;
+              _permissionGranted = await location.hasPermission();
+              if (_permissionGranted == PermissionStatus.denied) {
+                _permissionGranted = await location.requestPermission();
+                if (_permissionGranted != PermissionStatus.granted) {
+                  return;
+                }
               }
+
+              _locationData = await location.getLocation();
+
             }
-
-            _locationData = await location.getLocation();
-
-          }
         ),
         children: [
           TileLayer(
