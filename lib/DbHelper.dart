@@ -53,7 +53,15 @@ class DbHelper{
 
   Future<void> insert(final WordDTO wordDTO) async {
     Database db = await instance.database;
+<<<<<<< HEAD
     final String insertWord = "INSERT INTO words (content) VALUES ('${wordDTO.content}')";
     return db.execute(insertWord);
   }
+=======
+    final String insertWord =
+        "Insert Into words (content) values (' ${wordDTO.content}')";
+    return db.execute(insertWord);
+  }
+
+>>>>>>> origin/main
 }

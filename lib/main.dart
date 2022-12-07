@@ -40,14 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
       body: FlutterMap(
         mapController: mapController,
         options: MapOptions(
-            //center: _locationData,
             zoom: 9.2,
             onMapReady: () async {
 
-              Location location = Location();
+              Location location = new Location();
 
-              PermissionStatus? permissionGranted;
-              LocationData? _locationData;
+              PermissionStatus? _permissionGranted ;
+              LocationData? locationData;
 
               bool _serviceEnabled = await location.serviceEnabled();
 
@@ -66,7 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               }
 
-              _locationData = await location.getLocation();
+              locationData = await location.getLocation();
+
+              mapController.move(LatLng(locationData.latitude!, locationData.longitude!), 13);
 
             }
         ),
