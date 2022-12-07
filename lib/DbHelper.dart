@@ -57,4 +57,27 @@ class DbHelper{
     final String insertWord = "INSERT INTO words (content) VALUES ('${wordDTO.content}')";
     return db.execute(insertWord);
   }
+
+  Future<int> countWords() async {
+    final Database db = await instance.database;
+    var res = await db.rawQuery("Select count(*) from words");
+    var count = Sqflite.firstIntValue(res);
+    return Future.value(count);
+  }
+
+  Future<List<WordDTO>> getAllWords() async {
+    final Database db = await instance.database;
+
+    final resulSet =
+        await db.rawQuery("Select * from words");
+
+    final List<WordDTO> results = <WordDTO>[];
+
+    for (var r in resulSet){
+      var word = WordDTO.fromMap(r);
+      results.add(word);
+    }
+
+    return Future.value(results);
+  }
 }
