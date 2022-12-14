@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:littlewords/word_dto.dart';
-import 'package:location/location.dart';
+import 'package:littlewords/home.dart';
+import 'package:littlewords/shared_pref.provider.dart';
+import 'package:littlewords/username.route.dart';
 
 import 'error.route.dart';
 import 'loading.route.dart';
-import 'menu.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp2()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp2 extends ConsumerWidget {
-  const MyApp2({super.key});
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'LittleWords',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -41,20 +39,5 @@ class MyApp2 extends ConsumerWidget {
 
   Widget _loading(){
     return const LoadingRoute();
-  }
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'LittleWords',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
-    );
   }
 }
