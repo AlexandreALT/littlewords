@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
             userAgentPackageName: 'com.example.app',
           ),
           MarkerLayer(
+            rotate: false,
             markers: [
               if (position != null) Marker(point: position!, width:80, height: 80, builder:  (context) => Image.asset('assets/personne.png', height: 50,)),
               for (var w in words)
