@@ -7,7 +7,9 @@ import 'package:littlewords/word_dto.dart';
 import 'package:location/location.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage
+
+  ({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -24,12 +26,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          FlutterMap(
-            mapController: mapController,
-            options: MapOptions(
-                zoom: 9.2,
-                onMapReady: () async {
-                  Location location = Location();
+        FlutterMap(
+
+        mapController: mapController,
+        options: MapOptions(
+            zoom: 9.2,
+            onMapReady: () async {
+              Location location = Location();
 
               PermissionStatus? _permissionGranted;
               LocationData? locationData;
@@ -53,7 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
               locationData = await location.getLocation();
               setState(() {
-                position = LatLng(locationData!.latitude!, locationData.longitude!);
+                position =
+                    LatLng(locationData!.latitude!, locationData.longitude!);
               });
 
               mapController.move(
@@ -64,10 +68,16 @@ class _MyHomePageState extends State<MyHomePage> {
             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
             userAgentPackageName: 'com.example.app',
           ),
+        ],
+        nonRotatedChildren: [
           MarkerLayer(
-            rotate: false,
             markers: [
-              if (position != null) Marker(point: position!, width:80, height: 80, builder:  (context) => Image.asset('assets/personne.png', height: 50,)),
+              if (position != null) Marker(rotate: false,
+                  point: position!,
+                  width: 80,
+                  height: 80,
+                  builder: (context) =>
+                      Image.asset('assets/personne.png', height: 50,)),
               for (var w in words)
                 Marker(
                   point: LatLng(w.latitude!, w.longitude!),
@@ -77,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
             ],
           ),
-          Positioned(right: 8,top: 50,child: IconButton(
+          Positioned(right: 8, top: 50, child: IconButton(
             icon: Image.asset('assets/location.png'),
             iconSize: 50,
             onPressed: () {},
