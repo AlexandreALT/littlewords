@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Menu extends ConsumerWidget{
@@ -50,7 +51,7 @@ class Menu extends ConsumerWidget{
                         ),
                         const SizedBox(width: 25),
                         FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {SystemNavigator.pop();},
                           backgroundColor: Colors.green,
                           shape: const CircleBorder(side: BorderSide(color: Colors.black, width: 2)),
                           child: Image.asset('assets/deconnexion.png', height: 35),
