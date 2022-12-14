@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
         options: MapOptions(
             zoom: 9.2,
             onMapReady: () async {
-              Location location = new Location();
+              Location location = Location();
 
               PermissionStatus? _permissionGranted;
               LocationData? locationData;
@@ -70,16 +70,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   point: LatLng(w.latitude!, w.longitude!),
                   width: 80,
                   height: 80,
-                  builder: (context) => FlutterLogo(),
+                  builder: (context) => const FlutterLogo(),
                 ),
             ],
           ),
           Stack(children: [
-            Positioned(child: IconButton(
+            Positioned(right: 8,top: 64,child: IconButton(
               icon: Image.asset('assets/location.png'),
               //iconSize: 50,
               onPressed: () {},
-            ), right: 8,top: 64,)]),
+            ),)]),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
