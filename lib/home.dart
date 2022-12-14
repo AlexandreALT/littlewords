@@ -22,12 +22,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FlutterMap(
-        mapController: mapController,
-        options: MapOptions(
-            zoom: 9.2,
-            onMapReady: () async {
-              Location location = new Location();
+      body: Stack(
+        children: [
+          FlutterMap(
+            mapController: mapController,
+            options: MapOptions(
+                zoom: 9.2,
+                onMapReady: () async {
+                  Location location = Location();
 
               PermissionStatus? _permissionGranted;
               LocationData? locationData;
@@ -75,12 +77,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
             ],
           ),
-          Stack(children: [
-            Positioned(child: IconButton(
-              icon: Image.asset('assets/location.png'),
-              //iconSize: 50,
-              onPressed: () {},
-            ), right: 8,top: 64,)]),
+          Positioned(right: 8,top: 50,child: IconButton(
+            icon: Image.asset('assets/location.png'),
+            iconSize: 50,
+            onPressed: () {},
+          ),)
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
