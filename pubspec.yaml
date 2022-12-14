@@ -53,16 +53,6 @@ dev_dependencies:
     sdk: flutter
   flutter_native_splash: ^2.2.16
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^2.0.0
-  build_runner: ^2.3.2
-  freezed: ^2.3.0
-  json_serializable: ^6.5.4
-
 flutter_native_splash:
   color: "#ffffff"
   background_image: "assets/splash.png"
@@ -73,6 +63,16 @@ flutter_native_splash:
     icon_background_color: "#ffffff"
     image_dark: "assets/splash.png"
     icon_background_color_dark: "#121212"
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^2.0.0
+  build_runner: ^2.3.2
+  freezed: ^2.3.0
+  json_serializable: ^6.5.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -97,7 +97,6 @@ flutter:
     - assets/new-message.png
     - assets/deconnexion.png
     - assets/world.png
-    - assets/location.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
