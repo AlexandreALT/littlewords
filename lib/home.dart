@@ -74,6 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         point: position!,
                         width: 80,
                         height: 80,
+                        rotateOrigin: Offset(40,40),
+                        rotateAlignment: Alignment(40,40),
                         builder: (context) => Image.asset(
                               'assets/personne.png',
                               height: 50,
