@@ -50,6 +50,18 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^2.2.16
+
+flutter_native_splash:
+  color: "#ffffff"
+  background_image: "assets/splash.png"
+  image: "assets/splash.png"
+
+  android_12:
+    image: "assets/splash.png"
+    icon_background_color: "#ffffff"
+    image_dark: "assets/splash.png"
+    icon_background_color_dark: "#121212"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -78,6 +90,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
+    - assets/splash.png
     - assets/personne.png
     - assets/message-prive.png
     - assets/new-message.png
