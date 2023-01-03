@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlewords/allwords.dart';
 import 'package:littlewords/home.dart';
 import 'package:littlewords/shared_pref.provider.dart';
 import 'package:littlewords/username.route.dart';
@@ -22,6 +23,9 @@ class MyApp extends ConsumerWidget {
         primarySwatch: Colors.blue,
       ),
       home: ref.watch(userNameProvider).when(data: _data, error: _error, loading: _loading ),
+      routes: {
+        '/allwords': (context) => allWords(),
+      },
     );
   }
 

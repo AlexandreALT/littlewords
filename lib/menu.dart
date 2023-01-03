@@ -38,7 +38,7 @@ class Menu extends ConsumerWidget{
                         ),
                         const SizedBox(width: 25),
                         FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {Navigator.pushNamed(context, '/allwords');},
                           backgroundColor: Colors.green,
                           shape: const CircleBorder(side: BorderSide(color: Colors.black, width: 2)),
                           child: Image.asset('assets/message-prive.png', height: 40),
