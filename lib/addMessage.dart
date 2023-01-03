@@ -14,7 +14,19 @@ class AddMessage extends ConsumerWidget {
           child: Image.asset('assets/lettre.png', height: 340),
         ),
         Align(
-          alignment: Alignment(0.2,0.6),
+          alignment: Alignment(-0.5, 0.65),
+          child: FloatingActionButton(
+            backgroundColor: Colors.green,
+            shape: const CircleBorder(
+                side: BorderSide(color: Colors.black, width: 2)),
+            child: Image.asset('assets/annuler.png', height: 35),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        Align(
+          alignment: Alignment(0.5, 0.65),
           child: FloatingActionButton(
             backgroundColor: Colors.green,
             shape: const CircleBorder(
