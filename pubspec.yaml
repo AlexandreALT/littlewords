@@ -48,9 +48,10 @@ dependencies:
   location: ^4.4.0
   shared_preferences: ^2.0.15
 
+dev_dependencies:
   flutter_test:
     sdk: flutter
-    flutter_native_splash: ^2.2.16
+  flutter_native_splash: ^2.2.16
 
 flutter_native_splash:
   color: "#ffffff"
