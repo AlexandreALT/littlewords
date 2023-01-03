@@ -36,7 +36,7 @@ class DbHelper{
   // Declenche lorsque la base de donnees n'existe pas sur le device
   FutureOr<void> _onCreate(Database db, int version){
     const String createWordsTableQuery =
-        'CREATE TABLE words (uid integer PRIMARY KEY AUTOINCREMENT,content VARCHAR(200) NOT NULL, author VARCHAR(200) NOT NULL, latitude double, longitude double)';
+        'CREATE TABLE words (uid integer PRIMARY KEY AUTOINCREMENT,content VARCHAR(200), author VARCHAR(200), latitude double, longitude double)';
     db.execute(createWordsTableQuery);
   }
 
@@ -54,7 +54,7 @@ class DbHelper{
   Future<void> insert(final WordDTO wordDTO) async {
     Database db = await instance.database;
 
-    final String insertWord = "INSERT INTO words (content) VALUES ('${wordDTO.content}')";
+    final String insertWord = "INSERT INTO words (content,author,latitude,longitude) VALUES ('${wordDTO.content}','${wordDTO.author}','${wordDTO.latitude}','${wordDTO.longitude}')";
     return db.execute(insertWord);
   }
 
