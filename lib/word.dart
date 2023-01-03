@@ -12,17 +12,21 @@ class Word extends StatelessWidget {
         children: [
           Text(word.author!),
           Text(word.content!),
-          FloatingActionButton(
-            onPressed: () {},
-            backgroundColor: Colors.green,
-            shape: const CircleBorder(side: BorderSide(color: Colors.black, width: 2)),
-            child: Image.asset('assets/delete.png', height: 35),
-          ),
-          FloatingActionButton(
-            onPressed: () {},
-            backgroundColor: Colors.green,
-            shape: const CircleBorder(side: BorderSide(color: Colors.black, width: 2)),
-            child: Image.asset('assets/email-balloon.png', height: 35),
+          Row(
+            children:[
+              FloatingActionButton(
+                onPressed: () {},
+                backgroundColor: Colors.green,
+                shape: const CircleBorder(side: BorderSide(color: Colors.black, width: 2)),
+                child: Image.asset('assets/email-balloon.png', height: 35),
+              ),
+              FloatingActionButton(
+                onPressed: () {},
+                backgroundColor: Colors.green,
+                shape: const CircleBorder(side: BorderSide(color: Colors.black, width: 2)),
+                child: Image.asset('assets/delete.png', height: 35),
+              ),
+            ]
           ),
         ]
     );
