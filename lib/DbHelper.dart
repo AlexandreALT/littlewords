@@ -7,7 +7,7 @@ import 'package:sqflite/sqflite.dart';
 class DbHelper{
   static const dbName = 'littlewords.db'; // nom du schema
   static const dbPathName = 'littlewords.path'; // "nom du fichier sur le tel"
-  static const dbVersion = 1; // numero de version du scheme (pour upgrade)
+  static const dbVersion = 2; // numero de version du scheme (pour upgrade)
 
   // instance de la connexion a la bdd
   static Database? _database;
@@ -36,7 +36,7 @@ class DbHelper{
   // Declenche lorsque la base de donnees n'existe pas sur le device
   FutureOr<void> _onCreate(Database db, int version){
     const String createWordsTableQuery =
-        'CREATE TABLE words (uid integer PRIMARY KEY AUTOINCREMENT,content VARCHAR(200) NOT NULL)';
+        'CREATE TABLE words (uid integer PRIMARY KEY AUTOINCREMENT,content VARCHAR(200) NOT NULL, author VARCHAR(200) NOT NULL, latitude double, longitude double)';
     db.execute(createWordsTableQuery);
   }
 

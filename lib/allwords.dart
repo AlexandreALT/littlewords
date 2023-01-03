@@ -37,5 +37,7 @@ class allWords extends ConsumerWidget {
     print(error);
   }
 
-  Widget? _onLoading() {}
+  Widget? _onLoading() {
+    return Center(child: CircularProgressIndicator(),);
+  }
 }
