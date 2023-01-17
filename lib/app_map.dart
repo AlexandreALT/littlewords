@@ -53,11 +53,6 @@ class AppMap extends ConsumerWidget {
           ],
         ),
         WordsAroundMarkerLayer(),
-        IconButton(
-            onPressed: () {
-              _openViewMessage(context);
-            },
-            icon: Icon(Icons.email)),
         Positioned(
           right: 8,
           top: 50,
@@ -71,14 +66,6 @@ class AppMap extends ConsumerWidget {
         ),
       ],
     );
-  }
-
-  void _openViewMessage(context) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return ViewMessage();
-        });
   }
 
   Widget _onError(Object error, StackTrace stackTrace) {

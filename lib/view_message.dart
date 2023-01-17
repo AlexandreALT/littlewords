@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ViewMessage extends ConsumerWidget {
-  const ViewMessage({Key? key}) : super(key: key);
+  const ViewMessage({Key? key, required this.content}) : super(key: key);
+
+  final String content;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,7 +20,7 @@ class ViewMessage extends ConsumerWidget {
             alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.only(left: 50, right: 50, bottom: 128),
-              child: Text('Test'),
+              child: Text(content),
             ),
           ),
           Align(

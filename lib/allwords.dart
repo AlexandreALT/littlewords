@@ -17,10 +17,14 @@ class allWords extends ConsumerWidget {
       appBar: AppBar(
         leading: Builder(
           builder: (BuildContext context) {
-            return IconButton(
-              icon: Icon(Icons.arrow_left_rounded),
-              color: Colors.black,
-              onPressed: () {},
+            return CircleAvatar(
+              child: IconButton(
+                icon: Icon(Icons.arrow_left_rounded),
+                color: Colors.black,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
             );
           },
         ),

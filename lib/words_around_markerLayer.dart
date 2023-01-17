@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:littlewords/dio.provider.dart';
+import 'package:littlewords/view_message.dart';
 import 'package:littlewords/word_dto.dart';
 import 'package:littlewords/words_around.provider.dart';
 
@@ -21,18 +24,36 @@ class WordsAroundMarkerLayer extends ConsumerWidget {
             point: LatLng(word.latitude!, word.longitude!),
             width: 100,
             height: 100,
-            builder: (context) => GestureDetector(child: SizedBox(child: Image.asset('assets/email-balloon.png'), width: 32, height: 32,), onTap: (){
-              var uid = word.uid.toString();
+            builder: (context) => GestureDetector(
+                  child: SizedBox(
+                    child: Image.asset('assets/email-balloon.png'),
+                    width: 32,
+                    height: 32,
+                  ),
+                  onTap: () {
+                    var uid = word.uid.toString();
 
-              print(uid.toString());
+                    print(uid.toString());
 
-              var latitude = word.latitude.toString();
-              var longitude = word.longitude.toString();
-              Dio dio = ref.read(dioProvider);
-              dio.get("/word?uid="+uid+"&longitude="+longitude+"&latitude="+latitude)
-                  .then((value) =>
-                    ref.refresh(wordsAroundProvider));
-            },)));
+                    var latitude = word.latitude.toString();
+                    var longitude = word.longitude.toString();
+                    Dio dio = ref.read(dioProvider);
+                    dio
+                        .get("/word?uid=" +
+                            uid +
+                            "&longitude=" +
+                            longitude +
+                            "&latitude=" +
+                            latitude)
+                        .then((value) {
+                      var jsonAsString = value.toString();
+                      var json = jsonDecode(jsonAsString);
+                      final WordDTO wordDTO = WordDTO.fromJson(json);
+                      _openViewMessage(context,wordDTO);
+                    });
+                    //{ref.refresh(wordsAroundProvider); });
+                  },
+                )));
       }
       return MarkerLayer(
         markers: markers,
@@ -46,5 +67,15 @@ class WordsAroundMarkerLayer extends ConsumerWidget {
     }, loading: (loading) {
       return const Center(child: CircularProgressIndicator());
     });
+  }
+
+  void _openViewMessage(context, WordDTO wordDTO) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return ViewMessage(
+            content: wordDTO.content!,
+          );
+        });
   }
 }
