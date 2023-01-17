@@ -21,6 +21,7 @@ class AddMessage extends ConsumerWidget {
               padding: const EdgeInsets.only(left: 50, right: 50, bottom: 128),
               child: TextField(
                 maxLines: 5,
+                maxLength: 200,
                 autofocus: true,
                 decoration: InputDecoration(
                   labelText: 'Écrivez votre message ici',

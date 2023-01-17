@@ -57,7 +57,9 @@ class AppMap extends ConsumerWidget {
           child: IconButton(
             icon: Image.asset('assets/location.png'),
             iconSize: 50,
-            onPressed: () {},
+            onPressed: () {
+              mapController.move(position!, 18);
+            },
           ),
         )
       ],
