@@ -24,6 +24,7 @@ class AppMap extends ConsumerWidget {
       mapController: mapController,
       options: MapOptions(
           zoom: 9.2,
+          maxZoom: 18,
           onMapReady: () async {
             if (null == position) return;
             mapController.move(position, 18);
@@ -51,11 +52,12 @@ class AppMap extends ConsumerWidget {
                       )),
           ],
         ),
+        WordsAroundMarkerLayer(),
         IconButton(
             onPressed: () {
               _openViewMessage(context);
             },
-            icon: WordsAroundMarkerLayer()),
+            icon: Icon(Icons.email)),
         Positioned(
           right: 8,
           top: 50,

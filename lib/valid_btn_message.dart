@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:littlewords/device_location.provider.dart';
 import 'package:littlewords/word_dto.dart';
+import 'package:littlewords/words_around.provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'dio.provider.dart';
@@ -40,9 +41,10 @@ class ValidButtonMessage extends ConsumerWidget {
               null, username, content, location!.latitude, location.longitude);
           Dio dio = ref.read(dioProvider);
            dio.post('/word', data: word)
-          .then((value) =>
-               Navigator.pop(context))
-          .onError((error, stackTrace) => Text("Le message n'à pas était envoyé"));
+          .then((value) {
+             ref.refresh(wordsAroundProvider);
+            Navigator.pop(context);
+          });
 
         });
   }
