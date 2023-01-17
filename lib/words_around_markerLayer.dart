@@ -17,6 +17,8 @@ class WordsAroundMarkerLayer extends ConsumerWidget {
       for (var word in value) {
         markers.add(new Marker(
             point: LatLng(word.latitude!, word.longitude!),
+            width: 100,
+            height: 100,
             builder: (context) => Image.asset('assets/email-balloon.png')));
       }
       return MarkerLayer(

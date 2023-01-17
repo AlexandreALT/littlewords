@@ -14,13 +14,26 @@ class allWords extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     var word = new WordDTO(null, 'Louis', 'content', 250, 500);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.arrow_left_rounded),
+              color: Colors.black,
+              onPressed: () {},
+            );
+          },
+        ),
+        backgroundColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+      ),
       body: ref
           .watch(allWordsProvider)
           .when(data: _onData, error: _onError, loading: _onLoading),
       floatingActionButton: FloatingActionButton(
         child: Text("+"),
-        onPressed: (){
+        onPressed: () {
           DbHelper.instance.insert(word);
         },
       ),
@@ -38,6 +51,8 @@ class allWords extends ConsumerWidget {
   }
 
   Widget? _onLoading() {
-    return Center(child: CircularProgressIndicator(),);
+    return Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }

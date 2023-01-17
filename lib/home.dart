@@ -4,9 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:littlewords/app_map.dart';
 import 'package:littlewords/menu.dart';
-import 'package:littlewords/word_dto.dart';
-import 'package:littlewords/words_around_markerLayer.dart';
-import 'package:location/location.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage
