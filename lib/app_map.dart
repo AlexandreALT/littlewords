@@ -65,6 +65,9 @@ class AppMap extends ConsumerWidget {
             onPressed: () {
               _openViewMessage(context);
             },
+            onPressed: () {
+              mapController.move(position!, 18);
+            },
           ),
         ),
       ],
