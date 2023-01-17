@@ -87,4 +87,26 @@ class DbHelper{
     // On retourne la liste des resultats
     return Future.value(results);
   }
+
+  Future<List<WordDTO>> getAllWordsAround() async {
+    // Recuperation instance de la db
+    final Database db = await instance.database;
+
+    // execution query
+    final resultSet = await db.rawQuery("SELECT author FROM words");
+
+    // On initialise une liste de mots vide
+    final List<WordDTO> results = <WordDTO>[];
+
+    // On parcours les resultats
+    for(var r in resultSet) {
+      // On instancie un WordDTO sur la base de r
+      var word = WordDTO.fromMap(r);
+      // On l'ajoute dans la liste de resultat
+      results.add(word);
+    }
+
+    // On retourne la liste des resultats
+    return Future.value(results);
+  }
 }
