@@ -30,6 +30,7 @@ class AddMessage extends ConsumerWidget {
               child: TextField(
                 controller: _ctrl,
                 maxLines: 5,
+                maxLength: 200,
                 autofocus: true,
                 decoration: InputDecoration(
                   labelText: 'Écrivez votre message ici',
