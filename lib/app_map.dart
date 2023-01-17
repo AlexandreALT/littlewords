@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:littlewords/device_location.provider.dart';
+import 'package:littlewords/refresh.dart';
 import 'package:littlewords/view_message.dart';
 import 'package:littlewords/words_around_markerLayer.dart';
 
@@ -67,6 +68,12 @@ class AppMap extends ConsumerWidget {
             onPressed: () {
               mapController.move(position!, 18);
             },
+          ),
+        ),
+        Positioned(
+          right: 8,
+          top: 100,
+          child: Refresh(
           ),
         ),
       ],
