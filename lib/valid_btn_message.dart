@@ -23,7 +23,8 @@ class ValidButtonMessage extends ConsumerWidget {
         loading: _onLoading);
   }
 
-  Widget _onData(LatLng? data, TextEditingController controller, ref, BuildContext context) {
+  Widget _onData(LatLng? data, TextEditingController controller, ref,
+      BuildContext context) {
     // si null
 
     return FloatingActionButton(
@@ -36,16 +37,25 @@ class ValidButtonMessage extends ConsumerWidget {
           final String? username = instance.getString('username');
           var location = data;
           final String content = controller.text;
-          print(location!.latitude.toString() + ':' + location.longitude.toString());
+          print(location!.latitude.toString() +
+              ':' +
+              location.longitude.toString());
           final word = new WordDTO(
               null, username, content, location!.latitude, location.longitude);
           Dio dio = ref.read(dioProvider);
-           dio.post('/word', data: word)
-          .then((value) {
-             ref.refresh(wordsAroundProvider);
+          print('author : ' + word.author.toString());
+          print('content : ' + word.content.toString());
+          print('latitude : ' + word.latitude.toString());
+          print('longitude : ' + word.longitude.toString());
+          dio.post('/word', data: {
+            'content': word.content.toString(),
+            'author': word.author.toString(),
+            'latitude': word.latitude,
+            'longitude': word.longitude
+          }).then((value) {
+            ref.refresh(wordsAroundProvider);
             Navigator.pop(context);
           });
-
         });
   }
 
@@ -53,7 +63,7 @@ class ValidButtonMessage extends ConsumerWidget {
     return Text('Impossible de récuperer la position du téléphone');
   }
 
-  Widget _onLoading(){
+  Widget _onLoading() {
     return CircularProgressIndicator();
   }
 }
