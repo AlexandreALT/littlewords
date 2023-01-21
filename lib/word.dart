@@ -8,31 +8,64 @@ class Word extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-      Align(
-        alignment: Alignment.centerLeft,
-        child: Text(word.author ?? 'Inconnu'),
-      ),
-      Align(
-        alignment: Alignment.centerLeft,
-        child: Text(word.content ?? 'Pas de contenu'),
-      ),
-      Row(children: [
-        FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Colors.green,
-          shape: const CircleBorder(
-              side: BorderSide(color: Colors.black, width: 2)),
-          child: Image.asset('assets/email-balloon.png', height: 30),
+    return Padding(
+      padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 10.0),
+      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            word.author ?? 'Inconnu',
+            style: TextStyle(fontSize: 20),
+          ),
         ),
-        FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Colors.green,
-          shape: const CircleBorder(
-              side: BorderSide(color: Colors.black, width: 2)),
-          child: Image.asset('assets/delete.png', height: 30),
+        Divider(
+          thickness: 1,
+          color: Colors.black,
+          height: 3,
         ),
+        SizedBox(height: 10),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TextFormField(
+            maxLines: 5,
+            maxLength: 200,
+            initialValue: word.content ?? 'Pas de contenu',
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(0),
+              ),
+            ),
+          ),
+        ),
+        Row(children: [
+          SizedBox(
+            width: 15,
+          ),
+          Ink(
+            decoration: ShapeDecoration(
+              color: Colors.green,
+              shape: const CircleBorder(
+                  side: BorderSide(color: Colors.black, width: 2)),
+            ),
+            child: IconButton(
+              onPressed: () {},
+              icon: Image.asset('assets/email-balloon.png'),
+            ),
+          ),
+          SizedBox(width: 30),
+          Ink(
+            decoration: ShapeDecoration(
+              color: Colors.green,
+              shape: const CircleBorder(
+                  side: BorderSide(color: Colors.black, width: 2)),
+            ),
+            child: IconButton(
+              onPressed: () {},
+              icon: Image.asset('assets/delete.png'),
+            ),
+          ),
+        ]),
       ]),
-    ]);
+    );
   }
 }
