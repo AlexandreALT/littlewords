@@ -1,12 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:littlewords/device_location.provider.dart';
-import 'package:littlewords/dio.provider.dart';
 import 'package:littlewords/valid_btn_message.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'word_dto.dart';
 
 class AddMessage extends ConsumerWidget {
   AddMessage({Key? key}) : super(key: key);

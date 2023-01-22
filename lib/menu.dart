@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:path/path.dart';
+import 'package:littlewords/view_message.dart';
+import 'package:littlewords/word_dto.dart';
 
 import 'addMessage.dart';
 

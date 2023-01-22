@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:littlewords/DbHelper.dart';
+import 'package:littlewords/valid_btn_message.dart';
+import 'package:littlewords/word_dto.dart';
 
 class ViewMessage extends ConsumerWidget {
-  const ViewMessage({Key? key, required this.content}) : super(key: key);
+  ViewMessage({Key? key, required this.word}) : super(key: key);
 
-  final String content;
+  final WordDTO word;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _ctrl = TextEditingController(text: word.content);
     return Dialog(
       backgroundColor: Colors.transparent,
       child: SizedBox(
@@ -20,7 +24,14 @@ class ViewMessage extends ConsumerWidget {
             alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.only(left: 50, right: 50, bottom: 128),
-              child: Text(content),
+              child: TextFormField(
+                controller: _ctrl,
+                maxLines: 5,
+                maxLength: 200,
+                decoration: InputDecoration(
+                  labelText: 'Écrivez votre message ici',
+                ),
+              ),
             ),
           ),
           Align(
@@ -43,6 +54,7 @@ class ViewMessage extends ConsumerWidget {
                   side: BorderSide(color: Colors.black, width: 2)),
               child: Image.asset('assets/diskette.png', height: 30),
               onPressed: () {
+                DbHelper.instance.insert(word);
                 Navigator.pop(context);
               },
             ),
@@ -55,7 +67,7 @@ class ViewMessage extends ConsumerWidget {
                   side: BorderSide(color: Colors.black, width: 2)),
               child: Image.asset('assets/hand.png', height: 45),
               onPressed: () {
-                Navigator.pop(context);
+                ValidButtonMessage(controller: _ctrl,);
               },
             ),
           ),

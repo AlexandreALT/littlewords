@@ -58,6 +58,13 @@ class DbHelper{
     return db.execute(insertWord);
   }
 
+  Future<void> delete(final WordDTO wordDTO) async {
+    Database db = await instance.database;
+
+    final String deleteWord = "DELETE FROM words WHERE uid = ${wordDTO.uid}";
+    return db.execute(deleteWord);
+  }
+
   Future<int> countWords() async {
     final Database db = await instance.database;
     var res = await db.rawQuery("SELECT count(*) FROM words");

@@ -49,7 +49,7 @@ class WordsAroundMarkerLayer extends ConsumerWidget {
                       var jsonAsString = value.toString();
                       var json = jsonDecode(jsonAsString);
                       final WordDTO wordDTO = WordDTO.fromJson(json);
-                      // _openViewMessage(context,wordDTO);
+                      _openViewMessage(context,wordDTO);
                     });
                   },
                 )));
@@ -73,7 +73,7 @@ class WordsAroundMarkerLayer extends ConsumerWidget {
         context: context,
         builder: (context) {
           return ViewMessage(
-            content: wordDTO.content!,
+            word: wordDTO,
           );
         });
   }
